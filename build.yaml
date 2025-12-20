@@ -1,3 +1,4 @@
+# Trigger new build for board recognition
 include:
   - board: nice_nano_v2
     shield: sofle_left
