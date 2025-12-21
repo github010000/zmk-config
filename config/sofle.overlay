@@ -1,17 +1,6 @@
 /* config/sofle.overlay */
-/* config/sofle.overlay */
-/ {
-    /* 기존에 존재할지 모르는 ssd1306 노드 강제 비활성화 */
-    chosen {
-        zephyr,display = &nice_view;
-    };
-};
 
 &pro_micro_i2c {
-    status = "disabled";
-};
-
-&i2c0 {
     status = "disabled";
 };
 
@@ -23,5 +12,14 @@
         compatible = "niceview,niceview";
         reg = <0>;
         spi-max-frequency = <8000000>;
+        /* 화면 크기 정보 추가 (에러 해결 핵심) */
+        width = <160>;
+        height = <68>;
+    };
+};
+
+/ {
+    chosen {
+        zephyr,display = &nice_view;
     };
 };
