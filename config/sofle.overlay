@@ -1,9 +1,14 @@
 /* config/sofle.overlay */
-&spi1 {
-    status = "okay";
-    cs-gpios = <&pro_micro 10 GPIO_ACTIVE_HIGH>;
-};
+
+/* 1. 구형 I2C OLED 노드 완전히 제거 */
+/delete-node/ &ssd1306;
 
 &pro_micro_i2c {
     status = "disabled";
+};
+
+/* 2. nice!view 전용 SPI1 통로 강제 활성화 */
+&spi1 {
+    status = "okay";
+    cs-gpios = <&pro_micro 10 GPIO_ACTIVE_HIGH>;
 };
