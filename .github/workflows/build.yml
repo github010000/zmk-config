@@ -1,7 +1,13 @@
-include:
-  - board: nice_nano
-    shield: sofle_left
-    cmake-args: -Dboard_revision=2.0.0 -DSHIELD_LIST="nice_view_adapter;nice_view"
-  - board: nice_nano
-    shield: sofle_right
-    cmake-args: -Dboard_revision=2.0.0 -DSHIELD_LIST="nice_view_adapter;nice_view"
+name: Build
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    uses: caksoylar/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      build_matrix: |
+        - board: nice_nano
+          shield: sofle_left
+          cmake-args: -Dboard_revision=2.0.0 -DSHIELD_LIST="nice_view_adapter;nice_view"
+        - board: nice_nano
+          shield: sofle_right
+          cmake-args: -Dboard_revision=2.0.0 -DSHIELD_LIST="nice_view_adapter;nice_view"
